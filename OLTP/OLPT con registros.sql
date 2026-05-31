@@ -131,3 +131,18 @@ INNER JOIN AGENTE_VENTA a
     ON v.id_agente = a.id_agente
 INNER JOIN CANAL_CAPTACION cc
     ON v.id_canal = cc.id_canal;
+
+    SELECT COUNT(*) AS Total_Clientes FROM CLIENTE;
+
+INSERT INTO CLIENTE
+(dni,nombres,apellidos,edad,nacionalidad,
+provincia,distrito_procedencia,ocupacion,
+estado_civil,nro_hijos,telefono,correo)
+VALUES
+('76789012','Sofia','Castro',28,'Peruana','Lima','Barranco','Diseñadora','Soltero',0,'987654326','sofia@gmail.com'),
+('77890123','Ricardo','Vega',38,'Peruana','Lima','Surco','Ingeniero','Casado',2,'987654327','ricardo@gmail.com'),
+('78901234','Valeria','Mendoza',31,'Peruana','Lima','San Miguel','Administradora','Soltero',0,'987654328','valeria@gmail.com'),
+('79012345','Diego','Salazar',42,'Peruana','Lima','La Molina','Arquitecto','Casado',1,'987654329','diego@gmail.com'),
+('70123456','Camila','Navarro',27,'Peruana','Lima','Magdalena','Marketing','Soltero',0,'987654330','camila@gmail.com');
+
+select * from CLIENTE;
