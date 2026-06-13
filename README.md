@@ -2,7 +2,7 @@ I. Descripción de la organización:
 
 InmoPeru S.A. es una empresa promotora inmobiliaria con sede en Lima, Perú, que desarrolla y comercializa proyectos residenciales propios. A diferencia de las inmobiliarias intermediarias, la empresa construye sus propios edificios y gestiona directamente la venta de cada unidad, sin intervención de propietarios externos.
 
-La empresa opera actualmente con tres proyectos activos en los distritos de Miraflores, San Isidro y Barranco, con una cartera total de departamentos distribuidos en distintos pisos, tipologías y rangos de precio. El área comercial cuenta con un equipo de agentes de ventas que reciben una comisión porcentual sobre el precio de cada contrato cerrado.
+La empresa opera actualmente con cinco proyectos activos en los distritos de Miraflores,Surco, Magdalena, San Isidro y Barranco, con una cartera total de departamentos distribuidos en distintos pisos, tipologías y rangos de precio. El área comercial cuenta con un equipo de agentes de ventas que reciben una comisión porcentual sobre el precio de cada contrato cerrado.
 
 II. Problemática identificada
 La gestión actual de la información se realiza mediante hojas de cálculo, lo que genera dos problemas operativos críticos para el negocio:
