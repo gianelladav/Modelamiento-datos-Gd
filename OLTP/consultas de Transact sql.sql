@@ -186,3 +186,71 @@ SELECT
 FROM UNIDADES
 GROUP BY tipo_inmueble, piso
 ORDER BY piso, tipo_inmueble;
+
+/* Listar todos los departamentos disponibles con su proyecto */
+SELECT
+    p.nombre_proyecto,
+    u.codigo_unidad,
+    u.piso,
+    u.area_m2,
+    u.nro_habitaciones,
+    u.precio_lista,
+    u.moneda
+FROM UNIDADES u
+INNER JOIN PROYECTO p
+    ON u.id_proyecto = p.id_proyecto
+WHERE u.tipo_inmueble = 'Departamento'
+AND u.estado_disponibilidad = 'Disponible'
+ORDER BY p.nombre_proyecto, u.precio_lista;
+
+/* Mostrar la unidad más cara vendida por cada proyecto */
+WITH Ventas_Proyecto AS
+(
+    SELECT
+        p.nombre_proyecto,
+        u.codigo_unidad,
+        v.precio_venta,
+        ROW_NUMBER() OVER
+        (
+            PARTITION BY p.nombre_proyecto 
+            ORDER BY v.precio_venta DESC
+        ) AS Posicion
+    FROM VENTA v
+    INNER JOIN UNIDADES u
+        ON v.id_unidad = u.id_unidad
+    INNER JOIN PROYECTO p
+        ON u.id_proyecto = p.id_proyecto
+)
+SELECT
+    nombre_proyecto,
+    codigo_unidad,
+    precio_venta
+FROM Ventas_Proyecto
+WHERE Posicion = 1;
+
+
+/* Mostrar las ventas ordenadas cronológicamente y asignar un número de operación */
+SELECT
+    ROW_NUMBER() OVER(ORDER BY fecha_venta) AS Numero_Operacion,
+    id_venta,
+    fecha_venta,
+    precio_venta,
+    forma_pago
+FROM VENTA;
+
+-- Mostrar el precio promedio de los departamentos por proyecto, solo para aquellos proyectos cuyo precio promedio sea mayor al precio promedio general de los departamentos
+
+SELECT
+    p.nombre_proyecto,
+    AVG(u.precio_lista) AS Precio_Promedio
+FROM UNIDADES u
+INNER JOIN PROYECTO p
+    ON u.id_proyecto = p.id_proyecto
+WHERE u.tipo_inmueble = 'Departamento'
+GROUP BY p.nombre_proyecto
+HAVING AVG(u.precio_lista) >
+(
+    SELECT AVG(precio_lista)
+    FROM UNIDADES
+    WHERE tipo_inmueble = 'Departamento'
+);
