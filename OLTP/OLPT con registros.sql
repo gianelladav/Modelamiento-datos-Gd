@@ -284,3 +284,422 @@ CHECK (
     OR
     (tipo_inmueble = 'Closet' AND tipologia = 'Closet')
 );
+
+
+--Se eliminan los registros de las tabla venta y unidades porque no lo habia ingresado correctamente la lógica, los departamentos no tenian números correlativos.
+
+DELETE FROM VENTA;
+DELETE FROM UNIDADES;
+
+DBCC CHECKIDENT ('UNIDADES', RESEED, 0);
+DBCC CHECKIDENT ('VENTA', RESEED, 0);
+
+-- Se insertan nuevamente los departamentos con códigos correlativos por piso y tipología flat, para luego realizar las ventas correspondientes.
+
+-- Proyecto Miraflores Tower 
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+-- Piso 1
+(1,'M101','Departamento',1,'Flat',44,1,1,1,320000,'Soles','Disponible'),
+(1,'M102','Departamento',1,'Flat',60,2,2,1,450000,'Soles','Disponible'),
+(1,'M103','Departamento',1,'Flat',80,3,2,1,650000,'Soles','Disponible'),
+(1,'M104','Departamento',1,'Flat',65,2,2,1,480000,'Soles','Disponible'),
+
+-- Piso 2
+(1,'M201','Departamento',2,'Flat',42,1,1,1,310000,'Soles','Disponible'),
+(1,'M202','Departamento',2,'Flat',55,2,2,1,420000,'Soles','Disponible'),
+(1,'M203','Departamento',2,'Flat',75,3,2,1,620000,'Soles','Disponible'),
+(1,'M204','Departamento',2,'Flat',65,2,2,1,470000,'Soles','Disponible'),
+
+-- Piso 3
+(1,'M301','Departamento',3,'Flat',44,1,1,1,330000,'Soles','Disponible'),
+(1,'M302','Departamento',3,'Flat',60,2,2,1,450000,'Soles','Disponible'),
+(1,'M303','Departamento',3,'Flat',80,3,2,1,670000,'Soles','Disponible'),
+(1,'M304','Departamento',3,'Flat',65,2,2,1,490000,'Soles','Disponible'),
+
+-- Piso 4
+(1,'M401','Departamento',4,'Flat',42,1,1,1,325000,'Soles','Disponible'),
+(1,'M402','Departamento',4,'Flat',58,2,2,1,440000,'Soles','Disponible'),
+(1,'M403','Departamento',4,'Flat',78,3,2,1,680000,'Soles','Disponible'),
+(1,'M404','Departamento',4,'Flat',65,2,2,1,500000,'Soles','Disponible'),
+
+-- Piso 5
+(1,'M501','Departamento',5,'Flat',44,1,1,1,340000,'Soles','Disponible'),
+(1,'M502','Departamento',5,'Flat',62,2,2,1,470000,'Soles','Disponible'),
+(1,'M503','Departamento',5,'Flat',80,3,2,1,700000,'Soles','Disponible'),
+(1,'M504','Departamento',5,'Flat',65,2,2,1,520000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(1,'ME01','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME02','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME03','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME04','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME05','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME06','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME07','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME08','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME09','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME10','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+
+(1,'ME11','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME12','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME13','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME14','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME15','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME16','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME17','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME18','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME19','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(1,'ME20','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(1,'MD01','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(1,'MD02','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(1,'MD03','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(1,'MD04','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(1,'MD05','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+
+(1,'MD06','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(1,'MD07','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(1,'MD08','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(1,'MD09','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(1,'MD10','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible');
+
+-- Proyecto San Isidro Living
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+-- Piso 1 (5 departamentos)
+(2,'S101','Departamento',1,'Flat',44,1,1,1,320000,'Soles','Disponible'),
+(2,'S102','Departamento',1,'Flat',60,2,2,1,450000,'Soles','Disponible'),
+(2,'S103','Departamento',1,'Flat',80,3,2,1,650000,'Soles','Disponible'),
+(2,'S104','Departamento',1,'Flat',55,2,2,1,420000,'Soles','Disponible'),
+(2,'S105','Departamento',1,'Flat',42,1,1,1,310000,'Soles','Disponible'),
+
+-- Piso 2 (5 departamentos)
+(2,'S201','Departamento',2,'Flat',44,1,1,1,330000,'Soles','Disponible'),
+(2,'S202','Departamento',2,'Flat',65,2,2,1,480000,'Soles','Disponible'),
+(2,'S203','Departamento',2,'Flat',78,3,2,1,670000,'Soles','Disponible'),
+(2,'S204','Departamento',2,'Flat',58,2,2,1,440000,'Soles','Disponible'),
+(2,'S205','Departamento',2,'Flat',40,1,1,1,300000,'Soles','Disponible'),
+
+-- Piso 3 (4 departamentos)
+(2,'S301','Departamento',3,'Flat',44,1,1,1,340000,'Soles','Disponible'),
+(2,'S302','Departamento',3,'Flat',62,2,2,1,470000,'Soles','Disponible'),
+(2,'S303','Departamento',3,'Flat',80,3,2,1,700000,'Soles','Disponible'),
+(2,'S304','Departamento',3,'Flat',60,2,2,1,460000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(2,'SE01','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE02','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE03','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE04','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE05','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE06','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE07','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+
+(2,'SE08','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE09','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE10','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE11','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE12','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE13','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(2,'SE14','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(2,'SD01','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(2,'SD02','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(2,'SD03','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(2,'SD04','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+
+(2,'SD05','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(2,'SD06','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(2,'SD07','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible');
+
+-- Proyecto Barranco Living
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+-- Piso 1 (3 departamentos)
+(3,'B101','Departamento',1,'Flat',42,1,1,1,310000,'Soles','Disponible'),
+(3,'B102','Departamento',1,'Flat',60,2,2,1,450000,'Soles','Disponible'),
+(3,'B103','Departamento',1,'Flat',78,3,2,1,670000,'Soles','Disponible'),
+
+-- Piso 2 (3 departamentos)
+(3,'B201','Departamento',2,'Flat',44,1,1,1,330000,'Soles','Disponible'),
+(3,'B202','Departamento',2,'Flat',58,2,2,1,440000,'Soles','Disponible'),
+(3,'B203','Departamento',2,'Flat',75,3,2,1,650000,'Soles','Disponible'),
+
+-- Piso 3 (3 departamentos)
+(3,'B301','Departamento',3,'Flat',40,1,1,1,300000,'Soles','Disponible'),
+(3,'B302','Departamento',3,'Flat',65,2,2,1,480000,'Soles','Disponible'),
+(3,'B303','Departamento',3,'Flat',80,3,2,1,700000,'Soles','Disponible'),
+
+-- Piso 4 (3 departamentos)
+(3,'B401','Departamento',4,'Flat',44,1,1,1,340000,'Soles','Disponible'),
+(3,'B402','Departamento',4,'Flat',60,2,2,1,460000,'Soles','Disponible'),
+(3,'B403','Departamento',4,'Flat',78,3,2,1,680000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(3,'BE01','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE02','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE03','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE04','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE05','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE06','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+
+(3,'BE07','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE08','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE09','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE10','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE11','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(3,'BE12','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(3,'BD01','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(3,'BD02','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(3,'BD03','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+
+(3,'BD04','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(3,'BD05','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(3,'BD06','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible');
+
+-- Proyecto Surco Garden
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+-- Piso 1 (2 departamentos)
+(4,'SG101','Departamento',1,'Flat',42,1,1,1,310000,'Soles','Disponible'),
+(4,'SG102','Departamento',1,'Flat',60,2,2,1,450000,'Soles','Disponible'),
+
+-- Piso 2 (2 departamentos)
+(4,'SG201','Departamento',2,'Flat',44,1,1,1,330000,'Soles','Disponible'),
+(4,'SG202','Departamento',2,'Flat',65,2,2,1,480000,'Soles','Disponible'),
+
+-- Piso 3 (2 departamentos)
+(4,'SG301','Departamento',3,'Flat',58,2,2,1,440000,'Soles','Disponible'),
+(4,'SG302','Departamento',3,'Flat',78,3,2,1,670000,'Soles','Disponible'),
+
+-- Piso 4 (2 departamentos)
+(4,'SG401','Departamento',4,'Flat',60,2,2,1,460000,'Soles','Disponible'),
+(4,'SG402','Departamento',4,'Flat',80,3,2,1,700000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(4,'SGE01','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(4,'SGE02','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(4,'SGE03','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(4,'SGE04','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+
+(4,'SGE05','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(4,'SGE06','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(4,'SGE07','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(4,'SGE08','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(4,'SGD01','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(4,'SGD02','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+
+(4,'SGD03','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(4,'SGD04','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible');
+
+-- Proyecto Magdalena Plaza
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+-- Piso 1 (2 departamentos)
+(5,'MP101','Departamento',1,'Flat',44,1,1,1,320000,'Soles','Disponible'),
+(5,'MP102','Departamento',1,'Flat',60,2,2,1,450000,'Soles','Disponible'),
+
+-- Piso 2 (2 departamentos)
+(5,'MP201','Departamento',2,'Flat',65,2,2,1,480000,'Soles','Disponible'),
+(5,'MP202','Departamento',2,'Flat',80,3,2,1,700000,'Soles','Disponible'),
+
+-- Piso 3 (2 departamentos)
+(5,'MP301','Departamento',3,'Flat',42,1,1,1,310000,'Soles','Disponible'),
+(5,'MP302','Departamento',3,'Flat',58,2,2,1,440000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(5,'MPE01','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(5,'MPE02','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(5,'MPE03','Estacionamiento',-1,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+
+(5,'MPE04','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(5,'MPE05','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible'),
+(5,'MPE06','Estacionamiento',-2,'Simple',15,0,0,0,50000,'Soles','Disponible');
+
+INSERT INTO UNIDADES
+(id_proyecto, codigo_unidad, tipo_inmueble, piso, tipologia,
+area_m2, nro_habitaciones, nro_baños, es_flat,
+precio_lista, moneda, estado_disponibilidad)
+VALUES
+
+(5,'MPD01','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(5,'MPD02','Deposito',-1,'Deposito',6,0,0,0,18000,'Soles','Disponible'),
+(5,'MPD03','Deposito',-2,'Deposito',6,0,0,0,18000,'Soles','Disponible');
+
+
+-- Consulta para obtener el número de departamentos, estacionamientos y depósitos por proyecto
+
+SELECT 
+    p.nombre_proyecto AS Proyecto,
+    SUM(CASE WHEN u.tipo_inmueble = 'Departamento' THEN 1 ELSE 0 END) AS Departamentos,
+    SUM(CASE WHEN u.tipo_inmueble = 'Estacionamiento' THEN 1 ELSE 0 END) AS Estacionamientos,
+    SUM(CASE WHEN u.tipo_inmueble = 'Deposito' THEN 1 ELSE 0 END) AS Depositos,
+    COUNT(*) AS Total_Unidades
+FROM UNIDADES u
+INNER JOIN PROYECTO p
+    ON u.id_proyecto = p.id_proyecto
+GROUP BY p.nombre_proyecto
+ORDER BY p.nombre_proyecto;
+
+-- actualización de estado de disponibilidad a vendido para las unidades vendidas en la tabla venta
+
+UPDATE UNIDADES
+SET estado_disponibilidad = 'Vendido'
+WHERE id_unidad IN (
+1,2,3,5,6,9,10,13,17,18,
+51,52,56,57,61,62,
+86,87,89,90,
+116,117,
+136,137,138
+);
+
+UPDATE UNIDADES
+SET estado_disponibilidad = 'Separado'
+WHERE id_unidad IN (
+4,7,11,53,58,88,92,118,120,139
+);
+
+INSERT INTO VENTA
+(id_unidad, id_cliente, id_agente, id_canal,
+fecha_venta, precio_venta, moneda, estado_venta,
+forma_pago, monto_comision, monto_separacion)
+VALUES
+
+-- Miraflores Tower
+(1,1,1,1,'2025-01-15',320000,'Soles','Vigente','Crédito hipotecario',9600,0),
+(2,2,2,2,'2025-01-25',450000,'Soles','Vigente','Contado',13500,0),
+(3,3,3,4,'2025-02-10',650000,'Soles','Vigente','Crédito hipotecario',19500,0),
+(5,4,1,5,'2025-02-20',310000,'Soles','Vigente','Crédito directo',9300,0),
+(6,5,2,3,'2025-03-01',420000,'Soles','Vigente','Crédito hipotecario',12600,0),
+(9,6,4,1,'2025-03-15',330000,'Soles','Vigente','Contado',9900,0),
+(10,7,5,2,'2025-04-05',450000,'Soles','Vigente','Crédito hipotecario',13500,0),
+(13,8,3,4,'2025-04-18',325000,'Soles','Vigente','Crédito directo',9750,0),
+(17,9,2,5,'2025-05-02',340000,'Soles','Vigente','Crédito hipotecario',10200,0),
+(18,10,1,3,'2025-05-20',470000,'Soles','Vigente','Contado',14100,0),
+
+-- San Isidro Living
+(51,1,4,1,'2025-06-01',320000,'Soles','Vigente','Crédito hipotecario',9600,0),
+(52,2,5,2,'2025-06-15',450000,'Soles','Vigente','Crédito directo',13500,0),
+(56,3,2,4,'2025-06-25',330000,'Soles','Vigente','Crédito hipotecario',9900,0),
+(57,4,3,5,'2025-07-10',480000,'Soles','Vigente','Contado',14400,0),
+(61,5,1,3,'2025-07-22',340000,'Soles','Vigente','Crédito hipotecario',10200,0),
+(62,6,4,1,'2025-08-05',470000,'Soles','Vigente','Crédito directo',14100,0),
+
+-- Barranco House
+(86,7,5,2,'2025-08-20',310000,'Soles','Vigente','Contado',9300,0),
+(87,8,2,3,'2025-09-01',450000,'Soles','Vigente','Crédito hipotecario',13500,0),
+(89,9,3,4,'2025-09-18',330000,'Soles','Vigente','Crédito directo',9900,0),
+(90,10,1,5,'2025-10-05',440000,'Soles','Vigente','Crédito hipotecario',13200,0),
+
+-- Surco Garden
+(116,1,4,1,'2025-10-20',310000,'Soles','Vigente','Contado',9300,0),
+(117,2,5,2,'2025-11-02',450000,'Soles','Vigente','Crédito hipotecario',13500,0),
+
+-- Magdalena Park
+(136,3,2,4,'2025-11-15',320000,'Soles','Vigente','Crédito directo',9600,0),
+(137,4,3,5,'2025-11-25',450000,'Soles','Vigente','Crédito hipotecario',13500,0),
+(138,5,1,3,'2025-12-05',480000,'Soles','Vigente','Contado',14400,0);
+
+INSERT INTO VENTA
+(id_unidad, id_cliente, id_agente, id_canal,
+fecha_venta, precio_venta, moneda, estado_venta,
+forma_pago, monto_comision, monto_separacion)
+VALUES
+
+-- Miraflores Tower
+(4,6,2,1,'2025-12-10',480000,'Soles','Vigente','Crédito hipotecario',14400,10000),
+(7,7,3,2,'2025-12-12',620000,'Soles','Vigente','Crédito directo',18600,15000),
+(11,8,4,3,'2025-12-14',670000,'Soles','Vigente','Contado',20100,20000),
+
+-- San Isidro Living
+(53,9,5,4,'2025-12-15',650000,'Soles','Vigente','Crédito hipotecario',19500,10000),
+(58,10,1,5,'2025-12-16',670000,'Soles','Vigente','Crédito directo',20100,15000),
+
+-- Barranco House
+(88,1,2,1,'2025-12-17',670000,'Soles','Vigente','Crédito hipotecario',20100,10000),
+(92,2,3,2,'2025-12-18',300000,'Soles','Vigente','Contado',9000,5000),
+
+-- Surco Garden
+(118,3,4,3,'2025-12-19',330000,'Soles','Vigente','Crédito hipotecario',9900,10000),
+(120,4,5,4,'2025-12-20',440000,'Soles','Vigente','Crédito directo',13200,10000),
+
+-- Magdalena Park
+(139,5,1,5,'2025-12-21',700000,'Soles','Vigente','Crédito hipotecario',21000,15000);
+
